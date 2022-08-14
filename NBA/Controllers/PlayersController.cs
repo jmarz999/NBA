@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NBA.Models;
 using NBA.Services;
 
 namespace NBA.Controllers
@@ -20,17 +21,18 @@ namespace NBA.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public async Task<ActionResult> GetAll(int page, int per_page, string search)
         {
+            var data = await playerAppService.GetAllPlayers(page,per_page,search);
 
-            return Ok();
+            return Ok(data);
         }
 
         [HttpGet]
-        public ActionResult GetById()
+        public async Task<ActionResult> GetById(int id)
         {
-
-            return Ok();
+            var data = await playerAppService.GetPlayerID(id);
+            return Ok(data);
         }
     }
 }
