@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace NBA.Models
+﻿namespace NBA.Models
 {
-    public class Players
+    public class Player
     {
         public int Id { get; set; }
         public string First_name { get; set; }

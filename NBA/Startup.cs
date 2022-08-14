@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using NBA.Repositories;
+using NBA.Services;
 
 namespace NBA
 {
@@ -23,6 +25,9 @@ namespace NBA
             {
                 config.SwaggerDoc("v1", new OpenApiInfo { Title = "NBA", Version = "v1" });
             });
+
+            services.AddTransient<IPlayerAppService, PlayerAppService>();
+            services.AddTransient<IPlayerRepository, PlayerRepository>();
 
             services.AddControllers();
         }
