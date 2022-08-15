@@ -16,5 +16,7 @@ namespace NBA.Models
         public string Status { get; set; }
         public string Time { get; set; }
         public bool Postseason { get; set; }
+        public VisitorTeam VisitorTeam { get; set; }
+        public HomeTeam HomeTeam { get; set; }
     }
 }
