@@ -28,7 +28,8 @@ namespace NBA
 
             services.AddTransient<IPlayerAppService, PlayerAppService>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
-
+            services.AddTransient<ITeamAppService, TeamAppService>();
+            services.AddTransient<ITeamRepository, TeamRepository>();
             services.AddControllers();
         }
 

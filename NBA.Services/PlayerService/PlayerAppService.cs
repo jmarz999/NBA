@@ -21,7 +21,7 @@ namespace NBA.Services
             return playerRepository.GetAllPlayers(page, per_page, search);
         }
 
-        public Task<DataPlayers> GetPlayerID(int id)
+        public Task<Player> GetPlayerID(int id)
         {
             return playerRepository.GetPlayerID(id);
         }
