@@ -8,7 +8,7 @@ namespace NBA.Services
 {
     public interface IPlayerAppService
     {
-        Task<DataPlayers> GetAllPlayers(int page, int per_page, string search);
+        Task<DataPlayers> GetAllPlayers(int? page, int? per_page, string search);
         Task<Player> GetPlayerID(int id);
     }
 }

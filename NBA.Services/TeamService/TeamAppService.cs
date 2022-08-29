@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using NBA.Helpers;
 using NBA.Models;
 using NBA.Models.ApiResponses;
 using NBA.Repositories;
@@ -25,6 +26,11 @@ namespace NBA.Services
 
         public Task<Team> GetTeam(int id)
         {
+            if (id == 0)
+            {
+                throw new AppException("You must enter team id");
+            }
+
             return teamRepository.GetTeam(id);
         }
     }

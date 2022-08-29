@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NBA.Models;
 using NBA.Services;
 
 namespace NBA.Controllers
@@ -21,9 +16,9 @@ namespace NBA.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll(int page, int per_page, string search)
+        public async Task<ActionResult> GetAll(int? page, int? per_page, string search)
         {
-            var data = await playerAppService.GetAllPlayers(page,per_page,search);
+            var data = await playerAppService.GetAllPlayers(page, per_page, search);
 
             return Ok(data);
         }

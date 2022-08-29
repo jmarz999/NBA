@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NBA.Models
+﻿namespace NBA.Models
 {
     public class Game
     {
@@ -16,7 +12,7 @@ namespace NBA.Models
         public string Status { get; set; }
         public string Time { get; set; }
         public bool Postseason { get; set; }
-        public VisitorTeam VisitorTeam { get; set; }
-        public HomeTeam HomeTeam { get; set; }
+        public HomeTeam Home_team { get; set; }
+        public VisitorTeam Visitor_team { get; set; }
     }
 }

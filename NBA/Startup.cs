@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using NBA.Middleware;
 using NBA.Repositories;
 using NBA.Services;
 
@@ -32,7 +33,12 @@ namespace NBA
             services.AddTransient<ITeamRepository, TeamRepository>();
             services.AddTransient<IGameAppService, GameAppService>();
             services.AddTransient<IGameRepository, GameRepository>();
+            services.AddTransient<IStatAppService, StatAppService>();
+            services.AddTransient<IStatRepository, StatRepository>();
+            services.AddTransient<ISeasonAverageAppService, SeasonAverageAppService>();
+            services.AddTransient<ISeasonAverageRepository, SeasonAverageRepository>();
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +48,8 @@ namespace NBA
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseHttpsRedirection();
 
@@ -60,6 +68,7 @@ namespace NBA
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

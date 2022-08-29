@@ -11,7 +11,7 @@ namespace NBA.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        public async Task<DataPlayers> GetAllPlayers(int page, int per_page, string search)
+        public async Task<DataPlayers> GetAllPlayers(int? page, int? per_page, string search)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace NBA.Repositories
         {
             try
             {
-                var url = $"https://www.balldontlie.io/api/v1/players/?id={id}";
+                var url = $"https://www.balldontlie.io/api/v1/players/237";
                 var httpClient = new HttpClient();
                 var response = await httpClient.GetAsync(url);
                 var data = new Player();

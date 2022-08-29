@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using NBA.Models;
-using NBA.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
+using NBA.Services;
 
 namespace NBA.Controllers
 {
@@ -22,11 +17,20 @@ namespace NBA.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> GetAll(int page, int per_page, [FromUri] Game[] dates, [FromUri] Game[] seasons, [FromUri] Game[] team_ids, bool postseason, DateTime start_date, DateTime end_date)
+        public async Task<ActionResult> GetAll(GameDto gameDto)
         {
-            var data = await gameAppService.GetAllGames(page, per_page, dates, seasons, team_ids, postseason, start_date, end_date);
+            var data = await gameAppService.GetAllGames(gameDto);
 
             return Ok(data);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetGame(int id)
+        {
+            var data = await gameAppService.GetGame(id);
+
+            return Ok(data);
+        }
+
     }
 }

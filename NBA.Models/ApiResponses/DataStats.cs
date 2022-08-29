@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NBA.Models
 {
-    public class DataGames
+    public class DataStats
     {
-        public List<Game> Data { get; set; }
+        public List<Stat> Data { get; set; }
         public Meta Meta { get; set; }
     }
 }

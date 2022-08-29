@@ -1,14 +1,12 @@
-﻿using NBA.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
-using System.Web.Http;
+using NBA.Models;
 
 namespace NBA.Repositories
 {
     public interface IGameRepository
     {
-        public Task<Game> GetAllGames(int page, int per_page, [FromUri] Game[] dates, [FromUri] Game[] seasons, [FromUri] Game[] team_ids, bool postseason, DateTime start_date, DateTime end_date);
+        public Task<DataGames> GetAllGames(int page, int perPage, string[] dates, string startDate, string endDate, string[] seasons, int[] teamId, bool postseason);
+        public Task<Game> GetGame(int id);
     }
 }

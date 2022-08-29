@@ -1,10 +1,8 @@
-﻿using NBA.Models;
-using NBA.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
+using NBA.Helpers;
+using NBA.Models;
+using NBA.Repositories;
 
 namespace NBA.Services
 {
@@ -17,9 +15,22 @@ namespace NBA.Services
             this.gameRepository = gameRepository;
         }
 
-        public Task<Game> GetAllGames(int page, int per_page, [FromUri] Game[] dates, [FromUri] Game[] seasons, [FromUri] Game[] team_ids, bool postseason, DateTime start_date, DateTime end_date)
+        public Task<DataGames> GetAllGames(GameDto dto)
         {
-            return gameRepository.GetAllGames(page, per_page, dates, seasons, team_ids, postseason, start_date, end_date);
+            if (dto.Team_ids.Any(x => x == 0))
+            {
+                throw new AppException("You must enter team id");
+            }
+            return gameRepository.GetAllGames(dto.Page, dto.Per_page, dto.Dates, dto.End_date, dto.Start_date, dto.Seasons, dto.Team_ids, dto.Postseason);
+        }
+
+        public Task<Game> GetGame(int id)
+        {
+            if (id == 0)
+            {
+                throw new AppException("You must enter game id");
+            }
+            return gameRepository.GetGame(id);
         }
     }
 }
