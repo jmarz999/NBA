@@ -12,7 +12,7 @@
         public string Status { get; set; }
         public string Time { get; set; }
         public bool Postseason { get; set; }
-        public HomeTeam Home_team { get; set; }
-        public VisitorTeam Visitor_team { get; set; }
+        public Team Home_team { get; set; }
+        public Team Visitor_team { get; set; }
     }
 }

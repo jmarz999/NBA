@@ -9,7 +9,7 @@ namespace NBA.Services
 {
     public interface ITeamAppService
     {
-        Task<DataTeams> GetAllTeams(int page, int per_page);
-        Task<Team> GetTeam(int id);
+        Task<List<TeamDto>> GetAllTeams(int page, int per_page);
+        Task<TeamDto> GetTeam(int id);
     }
 }

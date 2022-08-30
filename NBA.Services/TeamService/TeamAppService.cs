@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NBA.Helpers;
-using NBA.Models;
-using NBA.Models.ApiResponses;
 using NBA.Repositories;
-using NBA.Services;
+using NBA.Services.Utils;
 
 namespace NBA.Services
 {
@@ -19,19 +16,23 @@ namespace NBA.Services
             this.teamRepository = teamRepository;
         }
 
-        public Task<DataTeams> GetAllTeams(int page, int per_page)
+        public async Task<List<TeamDto>> GetAllTeams(int page, int per_page)
         {
-            return teamRepository.GetAllTeams(page, per_page);
+            var result = await teamRepository.GetAllTeams(page, per_page);
+
+            return result.Data.Select(x => Mapper.EntityToDto(x)).ToList();
         }
 
-        public Task<Team> GetTeam(int id)
+        public async Task<TeamDto> GetTeam(int id)
         {
             if (id == 0)
             {
                 throw new AppException("You must enter team id");
             }
 
-            return teamRepository.GetTeam(id);
+            var result = await teamRepository.GetTeam(id);
+
+            return Mapper.EntityToDto(result);
         }
     }
 }
