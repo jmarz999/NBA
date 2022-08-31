@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using NBA.Models;
 using NBA.Repositories;
+using NBA.Services.SeasonAverageService;
+using NBA.Services.Utils;
 
 namespace NBA.Services
 {
@@ -13,9 +17,11 @@ namespace NBA.Services
             this.seasonAverageRepository = seasonAverageRepository;
         }
 
-        public Task<DataSeasonAverage> GetAverages(StatDto dto)
+        public async Task<List<SeasonAverageDto>> GetAverages(StatInput dto)
         {
-            return seasonAverageRepository.GetAverages(dto.Season, dto.Player_ids);
+            var result = await seasonAverageRepository.GetAverages(dto.Season, dto.Player_ids);
+
+            return result.Data.Select(x => Mapper.EntityToDto(x)).ToList();
         }
     }
 }

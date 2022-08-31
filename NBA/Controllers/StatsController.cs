@@ -20,7 +20,7 @@ namespace NBA.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> GetAll(StatDto statDto)
+        public async Task<ActionResult> GetAll(StatInput statDto)
         {
             var data = await statAppService.GetAllStats(statDto);
             return Ok(data);

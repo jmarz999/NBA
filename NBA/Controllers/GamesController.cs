@@ -17,7 +17,7 @@ namespace NBA.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> GetAll(GameDto gameDto)
+        public async Task<ActionResult> GetAll(GameInput gameDto)
         {
             var data = await gameAppService.GetAllGames(gameDto);
 

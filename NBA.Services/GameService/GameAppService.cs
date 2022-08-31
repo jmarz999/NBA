@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NBA.Helpers;
 using NBA.Models;
 using NBA.Repositories;
+using NBA.Services.GameService.Dto;
+using NBA.Services.Utils;
 
 namespace NBA.Services
 {
@@ -15,22 +18,29 @@ namespace NBA.Services
             this.gameRepository = gameRepository;
         }
 
-        public Task<DataGames> GetAllGames(GameDto dto)
+        public async Task<List<GameDto>> GetAllGames(GameInput dto)
         {
             if (dto.Team_ids.Any(x => x == 0))
             {
                 throw new AppException("You must enter team id");
             }
-            return gameRepository.GetAllGames(dto.Page, dto.Per_page, dto.Dates, dto.End_date, dto.Start_date, dto.Seasons, dto.Team_ids, dto.Postseason);
+
+            var result = await gameRepository.GetAllGames(dto.Page, dto.Per_page, dto.Dates, dto.Start_date, dto.End_date, dto.Seasons, dto.Team_ids, dto.Postseason);
+
+            return result.Data.Select(x => Mapper.EntityToDto(x)).ToList();
+
         }
 
-        public Task<Game> GetGame(int id)
+        public async Task<GameDto> GetGame(int id)
         {
             if (id == 0)
             {
                 throw new AppException("You must enter game id");
             }
-            return gameRepository.GetGame(id);
+
+            var result = await gameRepository.GetGame(id);
+
+            return Mapper.EntityToDto(result);
         }
     }
 }

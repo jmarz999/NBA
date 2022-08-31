@@ -16,7 +16,7 @@ namespace NBA.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> GetAverages(StatDto dto)
+        public async Task<ActionResult> GetAverages(StatInput dto)
         {
             var data = await seasonAverageAppService.GetAverages(dto);
             return Ok(data);
