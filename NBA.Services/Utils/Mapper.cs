@@ -7,7 +7,7 @@ namespace NBA.Services.Utils
 {
     public static class Mapper
     {
-        public static PlayerDto EntityToDto(Player entity)
+        public static PlayerDto EntityToDto(this Player entity)
         {
             return new PlayerDto
             {
@@ -18,11 +18,11 @@ namespace NBA.Services.Utils
                 Height_feet = entity.Height_feet,
                 Height_inches = entity.Height_inches,
                 Weight_pounds = entity.Weight_pounds,
-                Team = EntityToDto(entity.Team),
+                Team = entity.Team?.EntityToDto(),
             };
         }
 
-        public static TeamDto EntityToDto(Team entity)
+        public static TeamDto EntityToDto(this Team entity)
         {
             return new TeamDto
             {
@@ -36,25 +36,25 @@ namespace NBA.Services.Utils
             };
         }
 
-        public static GameDto EntityToDto(Game entity)
+        public static GameDto EntityToDto(this Game entity)
         {
             return new GameDto
             {
                 Id = entity.Id,
                 Date = entity.Date,
-                Home_team = EntityToDto(entity.Home_team),
+                Home_team = entity.Home_team?.EntityToDto(),
                 Home_team_score = entity.Home_team_score,
                 Period = entity.Period,
                 Postseason = entity.Postseason,
                 Season = entity.Season,
                 Status = entity.Status,
                 Time = entity.Time,
-                Visitor_team = EntityToDto(entity.Visitor_team),
+                Visitor_team = entity.Visitor_team?.EntityToDto(),
                 Visitor_team_score = entity.Visitor_team_score
             };
         }
 
-        public static SeasonAverageDto EntityToDto(SeasonAverage entity)
+        public static SeasonAverageDto EntityToDto(this SeasonAverage entity)
         {
             return new SeasonAverageDto
             {
@@ -83,14 +83,14 @@ namespace NBA.Services.Utils
             };
         }
 
-        public static StatDto EntityToDto(Stat entity)
+        public static StatDto EntityToDto(this Stat entity)
         {
             return new StatDto
             {
                 Id = entity.Id,
-                Game = EntityToDto(entity.Game),
-                Player = EntityToDto(entity.Player),
-                Team = EntityToDto(entity.Team),
+                Game = entity.Game?.EntityToDto(),
+                Player = entity.Player?.EntityToDto(),
+                Team = entity.Team?.EntityToDto(),
                 Turnover = entity.Turnover
             };
         }

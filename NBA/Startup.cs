@@ -28,15 +28,10 @@ namespace NBA
             });
 
             services.AddTransient<IPlayerAppService, PlayerAppService>();
-            services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<ITeamAppService, TeamAppService>();
-            services.AddTransient<ITeamRepository, TeamRepository>();
             services.AddTransient<IGameAppService, GameAppService>();
-            services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<IStatAppService, StatAppService>();
-            services.AddTransient<IStatRepository, StatRepository>();
             services.AddTransient<ISeasonAverageAppService, SeasonAverageAppService>();
-            services.AddTransient<ISeasonAverageRepository, SeasonAverageRepository>();
             services.AddControllers();
 
         }
